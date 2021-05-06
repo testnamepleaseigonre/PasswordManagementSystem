@@ -12,6 +12,9 @@ namespace PasswordManagementSystem
 {
     public partial class LoginPage : Form
     {
+        private RegisterWindow registerWindow;
+        private LoginWindow loginWindow;
+
         public LoginPage()
         {
             InitializeComponent();
@@ -19,14 +22,18 @@ namespace PasswordManagementSystem
 
         private void registerButton_Click(object sender, EventArgs e)
         {
-            RegisterWindow rw = new RegisterWindow();
-            rw.ShowDialog();
+            this.Hide();
+            registerWindow = new RegisterWindow();
+            registerWindow.Closed += (s, args) => this.Show();
+            registerWindow.ShowDialog();
         }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            LoginWindow lw = new LoginWindow();
-            lw.ShowDialog();
+            this.Hide();
+            loginWindow = new LoginWindow();
+            loginWindow.Closed += (s, args) => this.Show();
+            loginWindow.ShowDialog();
         }
     }
 }

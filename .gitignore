@@ -1,13 +1,7 @@
 
-Properties/AssemblyInfo.cs
-Properties/Settings.Designer.cs
-Properties/Settings.settings
-Properties/Resources.resx
-Properties/Resources.Designer.cs
 .vs/PasswordManagementSystem/v16/.suo
 .vs/ProjectSettings.json
 .vs/slnx.sqlite
-App.config
 bin/Debug/PasswordManagementSystem.exe
 bin/Debug/PasswordManagementSystem.exe.config
 bin/Debug/PasswordManagementSystem.pdb
@@ -25,3 +19,9 @@ obj/Debug/PasswordManagementSystem.pdb
 obj/Debug/PasswordManagementSystem.LoginWindow.resources
 obj/Debug/PasswordManagementSystem.LoginPage.resources
 obj/Debug/PasswordManagementSystem.exe
+.vs/VSWorkspaceState.json
+obj/Debug/PasswordManagementSystem.Forms.HomePage.resources
+obj/Debug/PasswordManagementSystem.Controls.NewPasswordControl.resources
+obj/Debug/PasswordManagementSystem.Controls.FindPasswordControl.resources
+obj/Debug/PasswordManagementSystem.Controls.DeletePasswordControl.resources
+obj/Debug/PasswordManagementSystem.Controls.UpdatePasswordControl.resources
