@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PasswordManagementSystem.Models;
 using PasswordManagementSystem.Repositories;
+using PasswordManagementSystem.Encryption;
 
 namespace PasswordManagementSystem
 {
     public partial class RegisterWindow : Form
     {
         private static UsersRepository usersRepository = new UsersRepository();
+        private static AESEncryptor encryptor = new AESEncryptor();
+        private string filePath = "C:/Users/valde/source/repos/PasswordManagementSystem/Files/";
 
         public RegisterWindow()
         {
@@ -34,8 +37,8 @@ namespace PasswordManagementSystem
             try
             {
                 textBoxesDataValidation(usernameTextBox.Text, passwordTextBox.Text, confirmPasswordTextBox.Text);
-                NewUser newUser = new NewUser(usernameTextBox.Text, passwordTextBox.Text);
-                usersRepository.Register(newUser);
+                NewUser newUser = new NewUser(usernameTextBox.Text.ToString(), passwordTextBox.Text.ToString());
+                usersRepository.register(newUser);
             }
             catch(Exception exc)
             {

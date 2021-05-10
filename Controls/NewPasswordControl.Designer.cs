@@ -53,7 +53,7 @@ namespace PasswordManagementSystem.Controls
             // loginNameLabel
             // 
             this.loginNameLabel.AutoSize = true;
-            this.loginNameLabel.Location = new System.Drawing.Point(99, 76);
+            this.loginNameLabel.Location = new System.Drawing.Point(161, 83);
             this.loginNameLabel.Name = "loginNameLabel";
             this.loginNameLabel.Size = new System.Drawing.Size(62, 13);
             this.loginNameLabel.TabIndex = 1;
@@ -62,7 +62,7 @@ namespace PasswordManagementSystem.Controls
             // urlAppLabel
             // 
             this.urlAppLabel.AutoSize = true;
-            this.urlAppLabel.Location = new System.Drawing.Point(89, 127);
+            this.urlAppLabel.Location = new System.Drawing.Point(151, 134);
             this.urlAppLabel.Name = "urlAppLabel";
             this.urlAppLabel.Size = new System.Drawing.Size(85, 13);
             this.urlAppLabel.TabIndex = 2;
@@ -71,7 +71,7 @@ namespace PasswordManagementSystem.Controls
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(99, 103);
+            this.passwordLabel.Location = new System.Drawing.Point(161, 110);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(53, 13);
             this.passwordLabel.TabIndex = 3;
@@ -80,7 +80,7 @@ namespace PasswordManagementSystem.Controls
             // moreInfoLabel
             // 
             this.moreInfoLabel.AutoSize = true;
-            this.moreInfoLabel.Location = new System.Drawing.Point(89, 152);
+            this.moreInfoLabel.Location = new System.Drawing.Point(151, 159);
             this.moreInfoLabel.Name = "moreInfoLabel";
             this.moreInfoLabel.Size = new System.Drawing.Size(86, 13);
             this.moreInfoLabel.TabIndex = 4;
@@ -88,37 +88,38 @@ namespace PasswordManagementSystem.Controls
             // 
             // createButton
             // 
-            this.createButton.Location = new System.Drawing.Point(272, 215);
+            this.createButton.Location = new System.Drawing.Point(347, 185);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(75, 23);
             this.createButton.TabIndex = 5;
             this.createButton.Text = "Create";
             this.createButton.UseVisualStyleBackColor = true;
+            this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 
             // loginNameBox
             // 
-            this.loginNameBox.Location = new System.Drawing.Point(223, 73);
+            this.loginNameBox.Location = new System.Drawing.Point(285, 80);
             this.loginNameBox.Name = "loginNameBox";
             this.loginNameBox.Size = new System.Drawing.Size(137, 20);
             this.loginNameBox.TabIndex = 6;
             // 
             // passwordBox
             // 
-            this.passwordBox.Location = new System.Drawing.Point(223, 99);
+            this.passwordBox.Location = new System.Drawing.Point(285, 106);
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.Size = new System.Drawing.Size(137, 20);
             this.passwordBox.TabIndex = 7;
             // 
             // urlAppBox
             // 
-            this.urlAppBox.Location = new System.Drawing.Point(223, 125);
+            this.urlAppBox.Location = new System.Drawing.Point(285, 132);
             this.urlAppBox.Name = "urlAppBox";
             this.urlAppBox.Size = new System.Drawing.Size(137, 20);
             this.urlAppBox.TabIndex = 8;
             // 
             // moreInfoBox
             // 
-            this.moreInfoBox.Location = new System.Drawing.Point(223, 152);
+            this.moreInfoBox.Location = new System.Drawing.Point(285, 159);
             this.moreInfoBox.Name = "moreInfoBox";
             this.moreInfoBox.Size = new System.Drawing.Size(137, 20);
             this.moreInfoBox.TabIndex = 9;

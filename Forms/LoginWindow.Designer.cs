@@ -38,9 +38,9 @@ namespace PasswordManagementSystem
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(302, 216);
+            this.loginButton.Location = new System.Drawing.Point(99, 130);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(75, 23);
+            this.loginButton.Size = new System.Drawing.Size(248, 23);
             this.loginButton.TabIndex = 0;
             this.loginButton.Text = "Sign in";
             this.loginButton.UseVisualStyleBackColor = true;
@@ -49,7 +49,7 @@ namespace PasswordManagementSystem
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(209, 60);
+            this.label1.Location = new System.Drawing.Point(96, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 1;
@@ -58,7 +58,7 @@ namespace PasswordManagementSystem
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(209, 90);
+            this.label2.Location = new System.Drawing.Point(96, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 2;
@@ -66,23 +66,23 @@ namespace PasswordManagementSystem
             // 
             // usernameBox
             // 
-            this.usernameBox.Location = new System.Drawing.Point(289, 53);
+            this.usernameBox.Location = new System.Drawing.Point(157, 40);
             this.usernameBox.Name = "usernameBox";
-            this.usernameBox.Size = new System.Drawing.Size(171, 20);
+            this.usernameBox.Size = new System.Drawing.Size(190, 20);
             this.usernameBox.TabIndex = 3;
             // 
             // passwordBox
             // 
-            this.passwordBox.Location = new System.Drawing.Point(289, 87);
+            this.passwordBox.Location = new System.Drawing.Point(157, 74);
             this.passwordBox.Name = "passwordBox";
-            this.passwordBox.Size = new System.Drawing.Size(171, 20);
+            this.passwordBox.Size = new System.Drawing.Size(190, 20);
             this.passwordBox.TabIndex = 4;
             // 
             // LoginWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(678, 361);
+            this.ClientSize = new System.Drawing.Size(460, 212);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.usernameBox);
             this.Controls.Add(this.label2);

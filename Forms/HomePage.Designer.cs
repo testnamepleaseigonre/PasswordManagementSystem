@@ -38,6 +38,7 @@ namespace PasswordManagementSystem.Forms
             // 
             // newPasswordButton
             // 
+            this.newPasswordButton.AutoSize = true;
             this.newPasswordButton.Location = new System.Drawing.Point(149, 12);
             this.newPasswordButton.Name = "newPasswordButton";
             this.newPasswordButton.Size = new System.Drawing.Size(102, 23);
@@ -48,6 +49,7 @@ namespace PasswordManagementSystem.Forms
             // 
             // updatePasswordButton
             // 
+            this.updatePasswordButton.AutoSize = true;
             this.updatePasswordButton.Location = new System.Drawing.Point(257, 12);
             this.updatePasswordButton.Name = "updatePasswordButton";
             this.updatePasswordButton.Size = new System.Drawing.Size(101, 23);
@@ -58,6 +60,7 @@ namespace PasswordManagementSystem.Forms
             // 
             // findPasswordButton
             // 
+            this.findPasswordButton.AutoSize = true;
             this.findPasswordButton.Location = new System.Drawing.Point(364, 12);
             this.findPasswordButton.Name = "findPasswordButton";
             this.findPasswordButton.Size = new System.Drawing.Size(100, 23);
@@ -68,6 +71,7 @@ namespace PasswordManagementSystem.Forms
             // 
             // deletePasswordButton
             // 
+            this.deletePasswordButton.AutoSize = true;
             this.deletePasswordButton.Location = new System.Drawing.Point(470, 12);
             this.deletePasswordButton.Name = "deletePasswordButton";
             this.deletePasswordButton.Size = new System.Drawing.Size(100, 23);
@@ -87,6 +91,7 @@ namespace PasswordManagementSystem.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(719, 358);
             this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.deletePasswordButton);
@@ -96,7 +101,9 @@ namespace PasswordManagementSystem.Forms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "HomePage";
             this.Text = "HomePage";
+            this.Load += new System.EventHandler(this.HomePage_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

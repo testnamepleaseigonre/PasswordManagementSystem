@@ -1,19 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using PasswordManagementSystem.Controls;
+using PasswordManagementSystem.Models;
 
 namespace PasswordManagementSystem.Forms
 {
-    public partial class HomePage : Form
+    public partial class HomePage : Form, IHomePage
     {
+        private static readonly string filePath = "C:/Users/valde/source/repos/PasswordManagementSystem/Files/";
         private NewPasswordControl newPassCtrl;
         private DeletePasswordControl deletePassCtrl;
-        private FindPasswordControl findPassCtrl;
         private UpdatePasswordControl updatePassCtrl;
+        public LoggedInUser loggedInUser;
+        private List<Entry> userData = null;
 
-        public HomePage()
+        public HomePage(LoggedInUser user)
         {
             InitializeComponent();
+            this.loggedInUser = user;
             newPasswordButton_Click(newPassCtrl, new EventArgs());
         }
 
@@ -24,7 +30,7 @@ namespace PasswordManagementSystem.Forms
                 contentPanel.Controls.Add(newPassCtrl);
             else
             {
-                newPassCtrl = new NewPasswordControl();
+                newPassCtrl = new NewPasswordControl(filePath, loggedInUser, this);
                 contentPanel.Controls.Add(newPassCtrl);
             }
         }
@@ -44,13 +50,7 @@ namespace PasswordManagementSystem.Forms
         private void findPasswordButton_Click(object sender, EventArgs e)
         {
             contentPanel.Controls.Clear();
-            if (findPassCtrl != null)
-                contentPanel.Controls.Add(findPassCtrl);
-            else
-            {
-                findPassCtrl = new FindPasswordControl();
-                contentPanel.Controls.Add(findPassCtrl);
-            }
+            contentPanel.Controls.Add(new FindPasswordControl(this));
         }
 
         private void deletePasswordButton_Click(object sender, EventArgs e)
@@ -65,5 +65,42 @@ namespace PasswordManagementSystem.Forms
             }
 
         }
+
+        private void fillUserDataList()
+        {
+            try
+            {
+                userData = new List<Entry>();
+                string line;
+                string[] temp;
+                StreamReader ongoingFile = new StreamReader(filePath + loggedInUser.getUsername() + ".txt");
+                while ((line = ongoingFile.ReadLine()) != null)
+                {
+                    temp = line.Split(',');
+                    userData.Add(new Entry(temp[0], temp[1], temp[2], temp[3]));
+                }
+                ongoingFile.Close();
+            }
+            catch
+            {
+
+            }
+        }
+
+        public List<Entry> getUserDataList()
+        {
+            return userData;
+        }
+
+        private void HomePage_Load(object sender, EventArgs e)
+        {
+            fillUserDataList();
+        }
+
+        public void addNewEntry(Entry newEntry)
+        {
+            userData.Add(newEntry);
+        }
+
     }
 }
