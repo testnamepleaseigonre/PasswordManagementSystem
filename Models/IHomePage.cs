@@ -10,5 +10,8 @@ namespace PasswordManagementSystem.Models
     {
         List<Entry> getUserDataList();
         void addNewEntry(Entry entry);
+        void removeEntry(Entry entry);
+        LoggedInUser getLoggedInUser();
+        string getFilePath();
     }
 }

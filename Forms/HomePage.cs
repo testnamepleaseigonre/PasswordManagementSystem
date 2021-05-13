@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using PasswordManagementSystem.Controls;
 using PasswordManagementSystem.Models;
+using PasswordManagementSystem.Encryption;
 
 namespace PasswordManagementSystem.Forms
 {
@@ -11,10 +12,9 @@ namespace PasswordManagementSystem.Forms
     {
         private static readonly string filePath = "C:/Users/valde/source/repos/PasswordManagementSystem/Files/";
         private NewPasswordControl newPassCtrl;
-        private DeletePasswordControl deletePassCtrl;
-        private UpdatePasswordControl updatePassCtrl;
         public LoggedInUser loggedInUser;
         private List<Entry> userData = null;
+        private static AESEncryptor encryptor = new AESEncryptor();
 
         public HomePage(LoggedInUser user)
         {
@@ -30,7 +30,7 @@ namespace PasswordManagementSystem.Forms
                 contentPanel.Controls.Add(newPassCtrl);
             else
             {
-                newPassCtrl = new NewPasswordControl(filePath, loggedInUser, this);
+                newPassCtrl = new NewPasswordControl(this);
                 contentPanel.Controls.Add(newPassCtrl);
             }
         }
@@ -38,13 +38,7 @@ namespace PasswordManagementSystem.Forms
         private void updatePasswordButton_Click(object sender, EventArgs e)
         {
             contentPanel.Controls.Clear();
-            if (updatePassCtrl != null)
-                contentPanel.Controls.Add(updatePassCtrl);
-            else
-            {
-                updatePassCtrl = new UpdatePasswordControl();
-                contentPanel.Controls.Add(updatePassCtrl);
-            }
+            contentPanel.Controls.Add(new UpdatePasswordControl(this));
         }
 
         private void findPasswordButton_Click(object sender, EventArgs e)
@@ -56,14 +50,7 @@ namespace PasswordManagementSystem.Forms
         private void deletePasswordButton_Click(object sender, EventArgs e)
         {
             contentPanel.Controls.Clear();
-            if (deletePassCtrl != null)
-                contentPanel.Controls.Add(deletePassCtrl);
-            else
-            {
-                deletePassCtrl = new DeletePasswordControl();
-                contentPanel.Controls.Add(deletePassCtrl);
-            }
-
+            contentPanel.Controls.Add(new DeletePasswordControl(this));
         }
 
         private void fillUserDataList()
@@ -77,13 +64,25 @@ namespace PasswordManagementSystem.Forms
                 while ((line = ongoingFile.ReadLine()) != null)
                 {
                     temp = line.Split(',');
-                    userData.Add(new Entry(temp[0], temp[1], temp[2], temp[3]));
+                    temp[1] = encryptor.changeToUnwantedCharacters(temp[1]);
+                    try
+                    {
+                        userData.Add(new Entry(temp[0], temp[1], temp[2], temp[3]));
+                    }
+                    catch
+                    {
+                        userData = null;
+                        ongoingFile.Close();
+                        MessageBox.Show("File is corrupted, making new one !");
+                        File.Create(filePath + loggedInUser.getUsername() + ".txt");
+                        fillUserDataList();
+                    }
                 }
                 ongoingFile.Close();
             }
-            catch
+            catch(Exception exc)
             {
-
+                Console.WriteLine(exc.Message);
             }
         }
 
@@ -102,5 +101,18 @@ namespace PasswordManagementSystem.Forms
             userData.Add(newEntry);
         }
 
+        public void  removeEntry(Entry entry)
+        {
+            userData.Remove(entry);
+        }
+
+        public LoggedInUser getLoggedInUser()
+        {
+            return loggedInUser;
+        }
+        public string getFilePath()
+        {
+            return filePath;
+        }
     }
 }

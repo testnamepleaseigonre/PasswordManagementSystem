@@ -34,5 +34,15 @@
         {
             return more;
         }
+
+        public void  setPass(string pass)
+        {
+            this.pass = pass;
+        }
+
+        public string  toString()
+        {
+            return $"{getLogin()},{getPass()},{getUrlApp()},{getMore()}";
+        }
     }
 }

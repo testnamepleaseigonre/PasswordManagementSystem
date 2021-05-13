@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PasswordManagementSystem.Models;
+using PasswordManagementSystem.Encryption;
 
 namespace PasswordManagementSystem.Controls
 {
     public partial class FindPasswordControl : UserControl
     {
         private IHomePage updatable;
+        private static AESEncryptor encryptor = new AESEncryptor();
 
         public FindPasswordControl(IHomePage updatable) 
         {
@@ -27,7 +29,7 @@ namespace PasswordManagementSystem.Controls
             {
                 foreach (Entry entry in updatable.getUserDataList())
                 {
-                    dataGridView1.Rows.Add(entry.getLogin(), entry.getPass(), entry.getUrlApp(), entry.getMore());
+                    addRowToGrid(entry);
                 }
             }
             else
@@ -46,7 +48,7 @@ namespace PasswordManagementSystem.Controls
             dataGridView1.Rows.Clear();
             foreach (Entry entry in updatable.getUserDataList())
             {
-                dataGridView1.Rows.Add(entry.getLogin(), entry.getPass(), entry.getUrlApp(), entry.getMore());
+                addRowToGrid(entry);
             }
         }
 
@@ -74,10 +76,45 @@ namespace PasswordManagementSystem.Controls
                 {
                     if (entry.getLogin() == textBox1.Text)
                     {
-                        dataGridView1.Rows.Add(entry.getLogin(), entry.getPass(), entry.getUrlApp(), entry.getMore());
+                        addRowToGrid(entry);
                     }
                 }
             }
+        }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                DataGridViewSelectedCellCollection cells = dataGridView1.SelectedCells;
+                if (cells[0].ColumnIndex == 1 && cells.Count == 1)
+                {
+                    if (cells[0].Value.ToString() == "Show Password")
+                    {
+                        dataGridView1[1, cells[0].RowIndex].Value =
+                        encryptor.decryptString(((Entry)dataGridView1[1, cells[0].RowIndex].Tag).getPass());
+                    }
+                    else
+                        dataGridView1[1, cells[0].RowIndex].Value = "Show Password";
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void addRowToGrid(Entry entry)
+        {
+            DataGridViewRow row = new DataGridViewRow();
+            row.CreateCells(dataGridView1);
+            row.Cells[0].Value = entry.getLogin();
+            row.Cells[1].Value = "Show Password";
+            row.Cells[1].Tag = entry;
+            row.Cells[2].Value = entry.getUrlApp();
+            row.Cells[3].Value = entry.getMore();
+            row.Tag = entry;
+            dataGridView1.Rows.Add(row);
         }
     }
 }

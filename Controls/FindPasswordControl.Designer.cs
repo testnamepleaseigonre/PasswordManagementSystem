@@ -55,7 +55,7 @@ namespace PasswordManagementSystem.Controls
             // 
             // allButton
             // 
-            this.allButton.Location = new System.Drawing.Point(108, 4);
+            this.allButton.Location = new System.Drawing.Point(358, 72);
             this.allButton.Name = "allButton";
             this.allButton.Size = new System.Drawing.Size(75, 23);
             this.allButton.TabIndex = 31;
@@ -76,7 +76,7 @@ namespace PasswordManagementSystem.Controls
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 54);
+            this.label2.Location = new System.Drawing.Point(7, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 35;
@@ -84,14 +84,14 @@ namespace PasswordManagementSystem.Controls
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(83, 51);
+            this.textBox1.Location = new System.Drawing.Point(75, 74);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(169, 20);
             this.textBox1.TabIndex = 36;
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(258, 49);
+            this.searchButton.Location = new System.Drawing.Point(250, 72);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(102, 23);
             this.searchButton.TabIndex = 37;
@@ -117,6 +117,7 @@ namespace PasswordManagementSystem.Controls
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(619, 186);
             this.dataGridView1.TabIndex = 38;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // username
             // 
@@ -149,7 +150,7 @@ namespace PasswordManagementSystem.Controls
             // emptyLabel
             // 
             this.emptyLabel.AutoSize = true;
-            this.emptyLabel.Location = new System.Drawing.Point(463, 9);
+            this.emptyLabel.Location = new System.Drawing.Point(465, 9);
             this.emptyLabel.Name = "emptyLabel";
             this.emptyLabel.Size = new System.Drawing.Size(157, 13);
             this.emptyLabel.TabIndex = 39;

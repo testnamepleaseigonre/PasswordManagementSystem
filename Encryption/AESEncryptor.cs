@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -14,81 +11,10 @@ namespace PasswordManagementSystem.Encryption
 
         private static readonly byte[] IV = Encoding.ASCII.GetBytes("<>?:{}|ASDJNGHFY");
 
-        public void EncryptAesManaged(string raw)
-        {
-            try
-            {
-                // Create Aes that generates a new key and initialization vector (IV).    
-                // Same key must be used in encryption and decryption    
-                using (AesManaged aes = new AesManaged())
-                {
-                    // Encrypt string    
-                    byte[] encrypted = Encrypt(raw);
-                    // Print encrypted string    
-                    Console.WriteLine($"Encrypted data: {System.Text.Encoding.UTF8.GetString(encrypted)}");
-                    // Decrypt the bytes to a string.    
-                    string decrypted = Decrypt(encrypted, aes.Key, aes.IV);
-                    Console.WriteLine(aes.Key);
-                    Console.WriteLine();
-                    // Print decrypted string. It should be same as raw data    
-                    Console.WriteLine($"Decrypted data: {decrypted}");
-                }
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine(exp.Message);
-            }
-            Console.ReadKey();
-        }
+        private static AesCryptoServiceProvider provider = new AesCryptoServiceProvider();
 
-        public byte[] Encrypt(string plainText)
-        {
-            byte[] encrypted;
-            // Create a new AesManaged.    
-            using (AesManaged aes = new AesManaged())
-            {
-                // Create encryptor    
-                ICryptoTransform encryptor = aes.CreateEncryptor(Key, IV);
-                // Create MemoryStream    
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    // Create crypto stream using the CryptoStream class. This class is the key to encryption    
-                    // and encrypts and decrypts data from any given stream. In this case, we will pass a memory stream    
-                    // to encrypt    
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
-                    {
-                        // Create StreamWriter and write data to a stream    
-                        using (StreamWriter sw = new StreamWriter(cs))
-                            sw.Write(plainText);
-                            encrypted = ms.ToArray();
-                    }
-                }
-            }
-            // Return encrypted data    
-            return encrypted;
-        }
-        public string Decrypt(byte[] cipherText, byte[] Key, byte[] IV)
-        {
-            string plaintext = null;
-            // Create AesManaged    
-            using (AesManaged aes = new AesManaged())
-            {
-                // Create a decryptor    
-                ICryptoTransform decryptor = aes.CreateDecryptor(Key, IV);
-                // Create the streams used for decryption.    
-                using (MemoryStream ms = new MemoryStream(cipherText))
-                {
-                    // Create crypto stream    
-                    using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
-                    {
-                        // Read crypto stream    
-                        using (StreamReader reader = new StreamReader(cs))
-                            plaintext = reader.ReadToEnd();
-                    }
-                }
-            }
-            return plaintext;
-        }
+        private static Encoding encoding = Encoding.GetEncoding("437");
+
 
         public void encryptFile(string directory, string fileName)
         {
@@ -113,7 +39,7 @@ namespace PasswordManagementSystem.Encryption
                     File.Delete($"{directory + fileName}.txt");
                 }
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc.Message);
             }
@@ -134,8 +60,6 @@ namespace PasswordManagementSystem.Encryption
                         cryptoStream.Write(content, 0, content.Length);
                         cryptoStream.FlushFinalBlock();
                         File.WriteAllBytes($"{directory + fileName}.txt", memStream.ToArray());
-                        //string withoutExtension = Path.ChangeExtension(file, null);
-                        //File.Move(file, withoutExtension);
                         File.Delete($"{directory + fileName}.enc");
                     }
                 }
@@ -144,6 +68,44 @@ namespace PasswordManagementSystem.Encryption
             {
                 Console.WriteLine(exc.Message);
             }
+        }
+
+        public string encryptString(string plainText)
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            byte[] encryptionTextBytes = encoding.GetBytes(plainText);
+            provider.Key = Key;
+            provider.IV = IV;
+            CryptoStream cryptoStream = new CryptoStream(memoryStream, provider.CreateEncryptor(), CryptoStreamMode.Write);
+            cryptoStream.Write(encryptionTextBytes, 0, encryptionTextBytes.Length);
+            cryptoStream.FlushFinalBlock();
+            byte[] encryptedTextBytes = memoryStream.ToArray();
+            return encoding.GetString(encryptedTextBytes);
+        }
+
+        public string decryptString(string cipherText)
+        {
+            byte[] decryptionTextBytes = encoding.GetBytes(cipherText);
+            provider.Key = Key;
+            provider.IV = IV;
+            ICryptoTransform icrypt = provider.CreateDecryptor(provider.Key, provider.IV);
+            byte[] decryptedTextBytes = icrypt.TransformFinalBlock(decryptionTextBytes, 0, decryptionTextBytes.Length);
+            icrypt.Dispose();
+            return encoding.GetString(decryptedTextBytes);
+        }
+
+        public string changeFromUnwantedCharacters(string text)
+        {
+            return text.Replace("\n", "``$%^NAUJASLAINAS$%^``")
+                    .Replace("\r", "```$%^NAUJASLAINASERAS$%^```")
+                    .Replace(",", "```$%^SEMICOLON$%^```");
+        }
+
+        public string changeToUnwantedCharacters(string text)
+        {
+            return text.Replace("``$%^NAUJASLAINAS$%^``", "\n")
+                    .Replace("```$%^NAUJASLAINASERAS$%^```", "\r")
+                    .Replace("```$%^SEMICOLON$%^```", ",");
         }
     }
 }
