@@ -12,7 +12,7 @@ namespace PasswordManagementSystem.Repositories
 {
     class UsersRepository
     {
-        private static SqlConnection connection = new SqlConnection(@"Server=.;Database=PassManagement;User Id=sa;Password=Thedizzy069");
+        private static SqlConnection connection = new SqlConnection(@"Server=.;Database=PassManagement;User Id=admin;Password=admin");
         private ScryptHasher hasher = new ScryptHasher();
         private string filePath = "C:/Users/valde/source/repos/PasswordManagementSystem/Files/";
 
