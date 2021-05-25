@@ -39,7 +39,6 @@ namespace PasswordManagementSystem.Controls
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.urlAppBox = new System.Windows.Forms.TextBox();
             this.moreInfoBox = new System.Windows.Forms.TextBox();
-            this.generatePassButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainLabel
@@ -54,7 +53,7 @@ namespace PasswordManagementSystem.Controls
             // loginNameLabel
             // 
             this.loginNameLabel.AutoSize = true;
-            this.loginNameLabel.Location = new System.Drawing.Point(174, 83);
+            this.loginNameLabel.Location = new System.Drawing.Point(161, 83);
             this.loginNameLabel.Name = "loginNameLabel";
             this.loginNameLabel.Size = new System.Drawing.Size(62, 13);
             this.loginNameLabel.TabIndex = 1;
@@ -72,7 +71,7 @@ namespace PasswordManagementSystem.Controls
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(183, 109);
+            this.passwordLabel.Location = new System.Drawing.Point(161, 110);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(53, 13);
             this.passwordLabel.TabIndex = 3;
@@ -81,7 +80,7 @@ namespace PasswordManagementSystem.Controls
             // moreInfoLabel
             // 
             this.moreInfoLabel.AutoSize = true;
-            this.moreInfoLabel.Location = new System.Drawing.Point(151, 162);
+            this.moreInfoLabel.Location = new System.Drawing.Point(151, 159);
             this.moreInfoLabel.Name = "moreInfoLabel";
             this.moreInfoLabel.Size = new System.Drawing.Size(86, 13);
             this.moreInfoLabel.TabIndex = 4;
@@ -99,47 +98,36 @@ namespace PasswordManagementSystem.Controls
             // 
             // loginNameBox
             // 
-            this.loginNameBox.Location = new System.Drawing.Point(242, 80);
+            this.loginNameBox.Location = new System.Drawing.Point(285, 80);
             this.loginNameBox.Name = "loginNameBox";
-            this.loginNameBox.Size = new System.Drawing.Size(180, 20);
+            this.loginNameBox.Size = new System.Drawing.Size(137, 20);
             this.loginNameBox.TabIndex = 6;
             // 
             // passwordBox
             // 
-            this.passwordBox.Location = new System.Drawing.Point(242, 106);
+            this.passwordBox.Location = new System.Drawing.Point(285, 106);
             this.passwordBox.Name = "passwordBox";
-            this.passwordBox.Size = new System.Drawing.Size(180, 20);
+            this.passwordBox.Size = new System.Drawing.Size(137, 20);
             this.passwordBox.TabIndex = 7;
             // 
             // urlAppBox
             // 
-            this.urlAppBox.Location = new System.Drawing.Point(242, 132);
+            this.urlAppBox.Location = new System.Drawing.Point(285, 132);
             this.urlAppBox.Name = "urlAppBox";
-            this.urlAppBox.Size = new System.Drawing.Size(180, 20);
+            this.urlAppBox.Size = new System.Drawing.Size(137, 20);
             this.urlAppBox.TabIndex = 8;
             // 
             // moreInfoBox
             // 
-            this.moreInfoBox.Location = new System.Drawing.Point(242, 159);
+            this.moreInfoBox.Location = new System.Drawing.Point(285, 159);
             this.moreInfoBox.Name = "moreInfoBox";
-            this.moreInfoBox.Size = new System.Drawing.Size(180, 20);
+            this.moreInfoBox.Size = new System.Drawing.Size(137, 20);
             this.moreInfoBox.TabIndex = 9;
-            // 
-            // generatePassButton
-            // 
-            this.generatePassButton.Location = new System.Drawing.Point(226, 185);
-            this.generatePassButton.Name = "generatePassButton";
-            this.generatePassButton.Size = new System.Drawing.Size(115, 23);
-            this.generatePassButton.TabIndex = 10;
-            this.generatePassButton.Text = "Generate Password";
-            this.generatePassButton.UseVisualStyleBackColor = true;
-            this.generatePassButton.Click += new System.EventHandler(this.generatePassButton_Click);
             // 
             // NewPasswordControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.generatePassButton);
             this.Controls.Add(this.moreInfoBox);
             this.Controls.Add(this.urlAppBox);
             this.Controls.Add(this.passwordBox);
@@ -169,6 +157,5 @@ namespace PasswordManagementSystem.Controls
         private System.Windows.Forms.TextBox passwordBox;
         private System.Windows.Forms.TextBox urlAppBox;
         private System.Windows.Forms.TextBox moreInfoBox;
-        private System.Windows.Forms.Button generatePassButton;
     }
 }
